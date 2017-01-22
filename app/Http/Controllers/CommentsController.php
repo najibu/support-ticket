@@ -24,6 +24,7 @@ class CommentsController extends Controller
         'comment' => $request->input('comment'),
       ]);
 
+      // send mail if the user commenting is not the ticket owner
       if ($comment->ticket->user->id !== Auth::user()->id) {
         $mailer->sendTicketComment($comment->ticket->user, Auth::user(), $comment->ticket, $comment);
         }
