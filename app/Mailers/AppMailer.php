@@ -47,4 +47,14 @@ class AppMailer {
 
       return $this->deliver();
   }
+
+  public function sendTicketStatusNotification($ticketOwner, $ticket)
+  {
+    $this->to = $ticketOwner->email;
+    $this->subject = "RE: $ticket->title (Ticket ID: $ticket->ticket_id)";
+    $this->view = 'emails.ticket_status';
+    $this->data = compact('ticketOwner', 'ticket');
+
+    return $this->deliver();
+  }
 }
