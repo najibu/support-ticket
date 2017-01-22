@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class TicketsController extends Controller
 {
+    public function index()
+    {
+      $tickets = Ticket::paginate(10);
+
+      $categories = Category::all();
+
+      return view('tickets.index', compact('tickets', 'categories'));
+    }
+
     public function create()
     {
       $categories = Category::all();
