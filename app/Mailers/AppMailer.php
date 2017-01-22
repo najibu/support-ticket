@@ -8,7 +8,7 @@ use Illuminate\Contracts\Mail\Mailer;
 
 class AppMailer {
   protected $mailer; 
-  protected $fromAddress = 'ns.najibu@gmail.com'
+  protected $fromAddress = 'ns.najibu@gmail.com';
   protected $fromName = 'Support Ticket';
   protected $to; 
   protected $subject;
@@ -22,7 +22,7 @@ class AppMailer {
 
   public function sendTicketInformation(User $user, Ticket $ticket)
   {
-    $this->to = $user->emaill
+    $this->to = $user->email;
     $this->subject = "[Ticket ID: $ticket->ticket_id] $ticket->title";
     $this->view = 'emails.ticket_info';
     $this->data = compact('user', 'ticket');
